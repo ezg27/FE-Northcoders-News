@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.content-container {
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 20px;
+  width: 80%;
+}
+
+.header-container {
+  width: 100%;
+  height: 60px;
+  background-color: white;
+}

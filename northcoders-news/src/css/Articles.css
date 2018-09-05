@@ -1,0 +1,19 @@
+.newsfeed-container {
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+.article-list {
+  list-style-type: none;
+  padding: 10px 10px;
+  text-align: start;
+  margin: 10px;
+}
+
+.list-item {
+  border: solid black 2px;
+  border-radius: 4px;
+  margin: 10px;
+  padding: 0px 10px;
+}
