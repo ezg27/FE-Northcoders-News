@@ -23,3 +23,12 @@ export const fetchCommentsByArticleId = id => {
     .then(buffer => buffer.json())
     .then(data => data.comments)
 };
+
+export const adjustVoteCount = (id, adjust, route) => {
+  return fetch(`${DB_URL}/${route}/${id}?vote=${adjust}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+}

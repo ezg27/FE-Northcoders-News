@@ -24,6 +24,21 @@ class Articles extends Component {
                 <p>Created by {article.created_by.username}</p>
                 <p>{article.created_at}</p>
                 <p>Comments: {article.comments}</p>
+                <p>Votes: {article.votes}</p>
+                <button
+                  onClick={() => {
+                    this.adjustVotes(article._id, 'up', 'articles');
+                  }}
+                >
+                  Upvote
+                </button>
+                <button
+                  onClick={() => {
+                    this.adjustVotes(article._id, 'down', 'articles');
+                  }}
+                >
+                  Downvote
+                </button>
               </li>
             );
           })}
@@ -43,17 +58,24 @@ class Articles extends Component {
   componentDidUpdate(prevProps) {
     const { topic } = this.props.match.params;
     if (prevProps.match.params.topic !== topic) {
-      this.fetchArticles(topic)
-      .then(articles => {
+      this.fetchArticles(topic).then(articles => {
         this.setState({
           articles
-        })
-      })
+        });
+      });
     }
   }
 
   fetchArticles = topic => {
     return topic ? api.fetchArticlesByTopic(topic) : api.fetchArticles();
+  };
+
+  adjustVotes = (id, adjust, route) => {
+    api.adjustVoteCount(id, adjust, route).then(() => {
+      this.fetchArticles(this.props.match.params.topic).then(articles => {
+        this.setState({ articles });
+      });
+    });
   };
 }
 
