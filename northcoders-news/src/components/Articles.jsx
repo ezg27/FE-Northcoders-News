@@ -13,10 +13,6 @@ class Articles extends Component {
       <div className="newsfeed-container">
         <ul className="article-list">
           {this.state.articles.map(article => {
-            // const articleTitle = article.title
-            //   .toLowerCase()
-            //   .replace(/ /g, '_')
-            //   .replace(/[.,:'()?!]/g, '');
             return (
               <li key={article._id} className="list-item">
                 <Link to={{ pathname: `/articles/${article._id}` }}>
@@ -25,22 +21,7 @@ class Articles extends Component {
                 <p>Created by {article.created_by.username}</p>
                 <p>{article.created_at}</p>
                 <p>Comments: {article.comments}</p>
-                {/* <p>Votes: {article.votes}</p> */}
                 <Votes item={article} route='articles'/>
-                {/* <button
-                  onClick={() => {
-                    this.adjustVotes(article._id, 'up', 'articles');
-                  }}
-                >
-                  Upvote
-                </button>
-                <button
-                  onClick={() => {
-                    this.adjustVotes(article._id, 'down', 'articles');
-                  }}
-                >
-                  Downvote
-                </button> */}
               </li>
             );
           })}

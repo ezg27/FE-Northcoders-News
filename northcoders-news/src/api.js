@@ -1,5 +1,11 @@
 const DB_URL = 'https://whispering-wave-29555.herokuapp.com/api';
 
+export const fetchTopics = () => {
+  return fetch(`${DB_URL}/topics`)
+    .then(buffer => buffer.json())
+    .then(data => data.topics)
+}
+
 export const fetchArticles = () => {
   return fetch(`${DB_URL}/articles`)
     .then(buffer => buffer.json())
