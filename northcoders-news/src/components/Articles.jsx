@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Votes from './Votes';
 import * as api from '../api';
 import '../css/Articles.css';
 import { Link } from 'react-router-dom';
@@ -24,8 +25,9 @@ class Articles extends Component {
                 <p>Created by {article.created_by.username}</p>
                 <p>{article.created_at}</p>
                 <p>Comments: {article.comments}</p>
-                <p>Votes: {article.votes}</p>
-                <button
+                {/* <p>Votes: {article.votes}</p> */}
+                <Votes item={article} route='articles'/>
+                {/* <button
                   onClick={() => {
                     this.adjustVotes(article._id, 'up', 'articles');
                   }}
@@ -38,7 +40,7 @@ class Articles extends Component {
                   }}
                 >
                   Downvote
-                </button>
+                </button> */}
               </li>
             );
           })}

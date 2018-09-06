@@ -4,27 +4,27 @@ import VoteButton from './VoteButton';
 
 class Votes extends Component {
   state = {
-    article: this.props.article,
+    item: this.props.item,
     voteChange: 0
   };
   render() {
     return (
       <div>
-        <p>Votes: {this.state.article.votes + this.state.voteChange}</p>
+        <p>Votes: {this.state.item.votes + this.state.voteChange}</p>
         <VoteButton
           text={'Upvote'}
           adjustVotes={this.adjustVotes}
-          articleId={this.state.article._id}
+          itemId={this.state.item._id}
           voteChange={this.state.voteChange}
-          route="articles"
+          route={this.props.route}
           button="up"
         />
         <VoteButton
           text={'Downvote'}
           adjustVotes={this.adjustVotes}
-          articleId={this.state.article._id}
+          itemId={this.state.item._id}
           voteChange={this.state.voteChange}
-          route="articles"
+          route={this.props.route}
           button="down"
         />
       </div>
@@ -34,7 +34,7 @@ class Votes extends Component {
     if (this.state.voteChange === 1 && button === 'down') repeats = 2;
     if (this.state.voteChange === -1 && button === 'up') repeats = 2;
     api.adjustVoteCount(id, adjust, route, repeats).then(arr => {
-      console.log(arr);
+
       this.setState({
         voteChange:
           adjust === 'up'

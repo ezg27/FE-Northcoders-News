@@ -36,7 +36,7 @@ class Article extends Component {
         <section className="article-container">
           <h1>{this.state.article.title}</h1>
           <p>{this.state.article.body}</p>
-          <Votes article={this.state.article}/>
+          <Votes item={this.state.article} route='articles'/>
           <button onClick={this.openModal}>Post comment</button>
           <Modal
             id="comment-overlay"

@@ -10,7 +10,7 @@ class VoteButton extends Component {
         <button
           onClick={() => {
             this.props.adjustVotes(
-              this.props.articleId,
+              this.props.itemId,
               adjust,
               this.props.route,
               this.props.button
