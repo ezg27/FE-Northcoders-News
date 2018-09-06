@@ -33,7 +33,7 @@ class App extends Component {
             <Route
               path="/articles/:article_id"
               render={({ match }) => {
-                return <Article id={match.params.article_id} />;
+                return <Article id={match.params.article_id} currentUser={this.state.currentUser}/>;
               }}
             />
           </Switch>

@@ -9,10 +9,11 @@ class Articles extends Component {
     articles: []
   };
   render() {
+    const { articles } = this.state;
     return (
       <div className="newsfeed-container">
         <ul className="article-list">
-          {this.state.articles.map(article => {
+          {articles.map(article => {
             return (
               <li key={article._id} className="list-item">
                 <Link to={{ pathname: `/articles/${article._id}` }}>
@@ -51,14 +52,6 @@ class Articles extends Component {
 
   fetchArticles = topic => {
     return topic ? api.fetchArticlesByTopic(topic) : api.fetchArticles();
-  };
-
-  adjustVotes = (id, adjust, route) => {
-    api.adjustVoteCount(id, adjust, route).then(() => {
-      this.fetchArticles(this.props.match.params.topic).then(articles => {
-        this.setState({ articles });
-      });
-    });
   };
 }
 

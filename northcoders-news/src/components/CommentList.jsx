@@ -32,6 +32,17 @@ class CommentList extends Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.newComment !== prevProps.newComment) {
+      this.setState({
+        comments: [
+          ...this.state.comments,
+          this.props.newComment
+        ]
+      })
+    }
+  }
+
   adjustVotes = (id, adjust, route) => {
     api.adjustVoteCount(id, adjust, route).then(() => {
       api.fetchCommentsByArticleId(this.props.id).then(comments => {

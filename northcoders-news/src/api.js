@@ -3,8 +3,8 @@ const DB_URL = 'https://whispering-wave-29555.herokuapp.com/api';
 export const fetchTopics = () => {
   return fetch(`${DB_URL}/topics`)
     .then(buffer => buffer.json())
-    .then(data => data.topics)
-}
+    .then(data => data.topics);
+};
 
 export const fetchArticles = () => {
   return fetch(`${DB_URL}/articles`)
@@ -34,15 +34,33 @@ export const adjustVoteCount = (id, adjust, route, repeats) => {
   let fetches = [];
   for (let i = 0; i < repeats; i++) {
     fetches.push(
-      fetch(
-        `${DB_URL}/${route}/${id}?vote=${adjust}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
+      fetch(`${DB_URL}/${route}/${id}?vote=${adjust}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
     );
   }
   return Promise.all(fetches);
+};
+
+export const fetchUser = username => {
+  return fetch(`${DB_URL}/users/${username}`)
+    .then(buffer => buffer.json())
+    .then(data => data.user);
+};
+
+export const addComment = (articleId, userId, comment) => {
+  const newComment = {
+    body: comment,
+    created_by: userId
+  }
+  return fetch(`${DB_URL}/articles/${articleId}/comments`, {
+    method: 'POST',
+    body: JSON.stringify(newComment),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
 };

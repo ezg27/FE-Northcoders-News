@@ -6,20 +6,20 @@ import Modal from 'react-modal';
 import Votes from './Votes';
 import PostComment from './PostComment';
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    borderRadius: '5px',
-    height: '50%',
-    width: '50%',
-    padding: '10px'
-  }
-};
+// const customStyles = {
+//   content: {
+//     top: '50%',
+//     left: '50%',
+//     right: 'auto',
+//     bottom: 'auto',
+//     marginRight: '-50%',
+//     transform: 'translate(-50%, -50%)',
+//     borderRadius: '5px',
+//     height: '50%',
+//     width: '50%',
+//     padding: '10px'
+//   }
+// };
 
 Modal.setAppElement('#root');
 
@@ -27,26 +27,27 @@ class Article extends Component {
   state = {
     article: {},
     voteChange: 0,
-    modalIsOpen: false
+    modalIsOpen: false,
+    comment: {}
   };
   render() {
-    if (Object.keys(this.state.article).length === 0) return <p>loading...</p>
+    const { article, comment } = this.state;
+    if (Object.keys(article).length === 0) return <p>loading...</p>
     else return (
       <div>
         <section className="article-container">
-          <h1>{this.state.article.title}</h1>
-          <p>{this.state.article.body}</p>
-          <Votes item={this.state.article} route='articles'/>
-          <button onClick={this.openModal}>Post comment</button>
+          <h1>{article.title}</h1>
+          <p>{article.body}</p>
+          <Votes item={article} route='articles'/>
+          <button onClick={this.openModal}>Add comment</button>
           <Modal
             id="comment-overlay"
             isOpen={this.state.modalIsOpen}
-            style={customStyles}
-            contentLabel="Example Modal"
+            // style={customStyles}
           >
-            <PostComment closeModal={this.closeModal} />
+            <PostComment closeModal={this.closeModal} articleId={article._id} currentUser={this.props.currentUser} handleNewComment={this.handleNewComment}/>
           </Modal>
-          <CommentList id={this.props.id} />
+          <CommentList id={this.props.id} newComment={comment}/>
         </section>
       </div>
     );
@@ -59,12 +60,14 @@ class Article extends Component {
     });
   }
 
+  handleNewComment = (comment) => {
+    this.setState({
+      comment
+    }).then(() => console.log('treee'))
+  }
+
   openModal = () => {
     this.setState({ modalIsOpen: true });
-  };
-
-  afterOpenModal = () => {
-    this.subtitle.style.color = '#f00';
   };
 
   closeModal = () => {
