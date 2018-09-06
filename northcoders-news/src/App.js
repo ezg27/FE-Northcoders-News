@@ -7,7 +7,7 @@ import { Switch, Link, Route } from 'react-router-dom';
 
 class App extends Component {
   state = {
-
+    currentUser: 'jessjelly'
   }
   render() {
     return <div className="App">
@@ -25,10 +25,7 @@ class App extends Component {
             <Route path="/topics/:topic/articles" component={MainPage} />
             <Route path="/articles/:article_id" render={({ match }) => {
               return <Article id={match.params.article_id}/>
-            }}/>  
-            {/* <Route path="/topics/:topic/articles" render={({params}) => {
-              return <Article id={params}/>
-            }} /> */}
+            }}/>
           </Switch>
         </section>
       </div>;

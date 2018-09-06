@@ -24,11 +24,12 @@ export const fetchCommentsByArticleId = id => {
     .then(data => data.comments)
 };
 
-export const adjustVoteCount = (id, adjust, route) => {
+export const adjustVoteCount = (id, adjust, route, repeats) => {
+  
   return fetch(`${DB_URL}/${route}/${id}?vote=${adjust}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     }
-  });
+  })
 }

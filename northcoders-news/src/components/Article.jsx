@@ -3,6 +3,8 @@ import * as api from '../api';
 import '../css/Article.css';
 import CommentList from './CommentList';
 import Modal from 'react-modal';
+import Votes from './Votes';
+import PostComment from './PostComment';
 
 const customStyles = {
   content: {
@@ -13,64 +15,41 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     borderRadius: '5px',
-    height: '50%'
+    height: '50%',
+    width: '50%',
+    padding: '10px'
   }
 };
+
+Modal.setAppElement('#root');
 
 class Article extends Component {
   state = {
     article: {},
+    voteChange: 0,
     modalIsOpen: false
   };
   render() {
-    return (
+    if (Object.keys(this.state.article).length === 0) return <p>loading...</p>
+    else return (
       <div>
         <section className="article-container">
           <h1>{this.state.article.title}</h1>
           <p>{this.state.article.body}</p>
-          <p>Votes: {this.state.article.votes}</p>
-          <button
-            onClick={() => {
-              this.adjustVotes(this.state.article._id, 'up', 'articles');
-            }}
-          >
-            Upvote
-          </button>
-          <button
-            onClick={() => {
-              this.adjustVotes(this.state.article._id, 'down', 'articles');
-            }}
-          >
-            Downvote
-          </button>
-          <button onClick={this.openModal}>Open Modal</button>
+          <Votes article={this.state.article}/>
+          <button onClick={this.openModal}>Post comment</button>
           <Modal
+            id="comment-overlay"
             isOpen={this.state.modalIsOpen}
             style={customStyles}
             contentLabel="Example Modal"
           >
-            <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-            <button onClick={this.closeModal}>X</button>
-            <form>
-              <input />
-              <button>tab navigation</button>
-            </form>
+            <PostComment closeModal={this.closeModal} />
           </Modal>
           <CommentList id={this.props.id} />
         </section>
       </div>
     );
-  }
-  openModal = () => {
-    this.setState({ modalIsOpen: true });
-  }
-  afterOpenModal = () => {
-    // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
-  }
-
-  closeModal = () => {
-    this.setState({ modalIsOpen: false });
   }
   componentDidMount() {
     api.fetchArticleById(this.props.id).then(article => {
@@ -79,13 +58,46 @@ class Article extends Component {
       });
     });
   }
-  adjustVotes = (id, adjust, route) => {
-    api.adjustVoteCount(id, adjust, route).then(() => {
-      api.fetchArticleById(this.state.article._id).then(article => {
-        this.setState({ article });
-      });
-    });
+
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+  };
+
+  afterOpenModal = () => {
+    this.subtitle.style.color = '#f00';
+  };
+
+  closeModal = () => {
+    this.setState({ modalIsOpen: false });
   };
 }
 
 export default Article;
+
+
+
+{
+  /* <p>Votes: {this.state.article.votes + this.state.voteChange}</p>
+          <button
+            onClick={() => {
+              this.adjustVotes(
+                this.state.article._id,
+                this.state.voteChange === 1 ? null : 'up',
+                'articles'
+              );
+            }}
+          >
+            Upvote
+          </button>
+          <button
+            onClick={() => {
+              this.adjustVotes(
+                this.state.article._id,
+                this.state.voteChange === -1 ? null : 'down',
+                'articles'
+              );
+            }}
+          >
+            Downvote
+          </button> */
+}
