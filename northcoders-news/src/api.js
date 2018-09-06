@@ -2,18 +2,24 @@ const DB_URL = 'https://whispering-wave-29555.herokuapp.com/api';
 
 export const fetchArticles = () => {
   return fetch(`${DB_URL}/articles`)
-  .then(buffer => buffer.json())
-  .then(data => data.articles)
-}
+    .then(buffer => buffer.json())
+    .then(data => data.articles);
+};
 
-export const fetchArticlesByTopic = (topic) => {
+export const fetchArticlesByTopic = topic => {
   return fetch(`${DB_URL}/topics/${topic}/articles`)
     .then(buffer => buffer.json())
     .then(data => data.articles);
-}
+};
 
-export const fetchArticleById = (id) => {
+export const fetchArticleById = id => {
   return fetch(`${DB_URL}/articles/${id}`)
     .then(buffer => buffer.json())
-    .then(data => data.article)
-}
+    .then(data => data.article);
+};
+
+export const fetchCommentsByArticleId = id => {
+  return fetch(`${DB_URL}/articles/${id}/comments`)
+    .then(buffer => buffer.json())
+    .then(data => data.comments)
+};

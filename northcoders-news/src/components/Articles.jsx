@@ -12,10 +12,10 @@ class Articles extends Component {
       <div className="newsfeed-container">
         <ul className="article-list">
           {this.state.articles.map(article => {
-            const articleTitle = article.title
-              .toLowerCase()
-              .replace(/ /g, '_')
-              .replace(/[.,:'()?!]/g, '');
+            // const articleTitle = article.title
+            //   .toLowerCase()
+            //   .replace(/ /g, '_')
+            //   .replace(/[.,:'()?!]/g, '');
             return (
               <li key={article._id} className="list-item">
                 <Link to={{ pathname: `/articles/${article._id}` }}>

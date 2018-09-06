@@ -1,0 +1,10 @@
+.comment-list {
+  list-style-type: none;
+  padding: 0 20px;
+}
+
+.comment {
+  border: solid black 1px;
+  border-radius: 5px;
+  margin: 10px;
+}
