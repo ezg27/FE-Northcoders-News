@@ -73,31 +73,3 @@ class Article extends Component {
 }
 
 export default Article;
-
-
-
-{
-  /* <p>Votes: {this.state.article.votes + this.state.voteChange}</p>
-          <button
-            onClick={() => {
-              this.adjustVotes(
-                this.state.article._id,
-                this.state.voteChange === 1 ? null : 'up',
-                'articles'
-              );
-            }}
-          >
-            Upvote
-          </button>
-          <button
-            onClick={() => {
-              this.adjustVotes(
-                this.state.article._id,
-                this.state.voteChange === -1 ? null : 'down',
-                'articles'
-              );
-            }}
-          >
-            Downvote
-          </button> */
-}

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './css/App.css';
 import MainPage from './components/MainPage';
 import Article from './components/Article'
-// import Button from './components/Button';
 import { Switch, Link, Route } from 'react-router-dom';
 
 class App extends Component {

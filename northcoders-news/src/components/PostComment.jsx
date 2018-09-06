@@ -9,7 +9,7 @@ class PostComment extends Component {
         <button onClick={this.props.closeModal} className='modal-close'>X</button>
         <form className='comment-form'>
           <textarea className='comment-input' />
-          {/* <button>tab navigation</button> */}
+          <button>Post comment</button>
         </form>
       </div>
     );

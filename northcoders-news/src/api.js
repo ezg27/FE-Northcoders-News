@@ -21,15 +21,22 @@ export const fetchArticleById = id => {
 export const fetchCommentsByArticleId = id => {
   return fetch(`${DB_URL}/articles/${id}/comments`)
     .then(buffer => buffer.json())
-    .then(data => data.comments)
+    .then(data => data.comments);
 };
 
 export const adjustVoteCount = (id, adjust, route, repeats) => {
-  
-  return fetch(`${DB_URL}/${route}/${id}?vote=${adjust}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-}
+  let fetches = [];
+  for (let i = 0; i < repeats; i++) {
+    fetches.push(
+      fetch(
+        `${DB_URL}/${route}/${id}?vote=${adjust}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+    );
+  }
+  return Promise.all(fetches);
+};
