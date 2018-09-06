@@ -33,10 +33,6 @@ class CommentList extends Component {
     });
   }
 
-  componentDidUpdate() {
-
-  }
-
   adjustVotes = (id, adjust, route) => {
     api.adjustVoteCount(id, adjust, route)
       .then(() => {
