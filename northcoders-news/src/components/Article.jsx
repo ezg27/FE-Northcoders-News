@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 import Votes from './Votes';
 import PostComment from './PostComment';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // const customStyles = {
 //   content: {
@@ -33,9 +34,12 @@ class Article extends Component {
     err: null
   };
   render() {
-    if (this.state.err) {
-      return <Redirect to='/error'/> 
-    }
+    if (this.state.err) return <Redirect to={{
+      pathname: '/error',
+      state: {
+        from: 'article'
+      }
+    }}/>
     const { article, comment } = this.state;
     if (Object.keys(article).length === 0) return <p>loading...</p>
     else return (
@@ -87,6 +91,12 @@ class Article extends Component {
   closeModal = () => {
     this.setState({ modalIsOpen: false });
   };
+  
 }
+
+Article.propTypes = {
+  id: PropTypes.string,
+  currentUser: PropTypes.string
+};
 
 export default Article;

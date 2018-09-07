@@ -4,7 +4,7 @@ class PostArticle extends Component {
   state = {
     newTitle: '',
     newArticle: '',
-    topic: this.props.topic
+    // topic: this.props.topic
   };
   render() {
     return (
@@ -17,15 +17,17 @@ class PostArticle extends Component {
             onChange={this.handleTitleInput}
             className="title-input"
             placeholder="Add title..."
+            value={this.state.newTitle}
           />
           <textarea
             onChange={this.handleArticleInput}
             className="article-input"
             placeholder="Share your thoughts..."
+            value={this.state.newArticle}
           />
           <select
             required
-            value={this.state.topic === undefined ? 'choose' : this.state.topic}
+            defaultValue={this.props.topic === undefined ? 'choose' : this.props.topic}
           >
             <option value="choose" disabled>
               Choose topic...
@@ -39,6 +41,22 @@ class PostArticle extends Component {
       </div>
     );
   }
+
+  componentDidMount() {
+
+  }
+
+  handleTitleInput = e => {
+    this.setState({
+      newTitle: e.target.value
+    });
+  };
+
+  handleArticleInput = e => {
+    this.setState({
+      newArticle: e.target.value
+    });
+  };
 }
 
 export default PostArticle;
