@@ -7,7 +7,7 @@ import { Switch, Link, Route } from 'react-router-dom';
 
 class App extends Component {
   state = {
-    currentUser: 'jessJelly',
+    currentUser: 'jessjelly',
     topics: []
   };
   render() {

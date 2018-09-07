@@ -31,6 +31,7 @@ class PostComment extends Component {
     api.addComment(this.props.articleId, this.state.user._id, this.state.newComment)
       .then(newComment => {
         this.props.handleNewComment(newComment);
+        this.props.closeModal()
       })
   }
 }

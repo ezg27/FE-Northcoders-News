@@ -63,4 +63,14 @@ export const addComment = (articleId, userId, comment) => {
       'Content-Type': 'application/json'
     }
   })
+  .then(buffer => buffer.json())
+  .then(data => data.comment)
 };
+
+export const deleteComment = (commentId) => {
+  return fetch(`${DB_URL}/comments/${commentId}`, {
+    method: 'DELETE'
+  })
+    .then(buffer => buffer.json())
+    .then(data => data.comment);
+}

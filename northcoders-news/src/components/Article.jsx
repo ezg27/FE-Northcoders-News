@@ -47,7 +47,7 @@ class Article extends Component {
           >
             <PostComment closeModal={this.closeModal} articleId={article._id} currentUser={this.props.currentUser} handleNewComment={this.handleNewComment}/>
           </Modal>
-          <CommentList id={this.props.id} newComment={comment}/>
+          <CommentList id={this.props.id} currentUser={this.props.currentUser} newComment={comment}/>
         </section>
       </div>
     );
@@ -61,9 +61,12 @@ class Article extends Component {
   }
 
   handleNewComment = (comment) => {
+    comment.created_by = {
+      username: this.props.currentUser
+    }
     this.setState({
       comment
-    }).then(() => console.log('treee'))
+    })
   }
 
   openModal = () => {

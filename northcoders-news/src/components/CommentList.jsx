@@ -5,18 +5,24 @@ import '../css/CommentList.css';
 
 class CommentList extends Component {
   state = {
-    comments: []
+    comments: [],
+    deletedComments: [],
+    currentUser: this.props.currentUser
   };
   render() {
+    const { deletedComments } = this.state;
     return (
       <div>
         <ul className="comment-list">
           {this.state.comments.map(comment => {
-            return (
+            return deletedComments.includes(comment) ? null : (
               <li key={comment._id} className="comment">
                 <h6>{comment.created_by.username}</h6>
                 <p>{comment.body}</p>
                 <Votes item={comment} route="comments" />
+                {comment.created_by.username === this.state.currentUser && (
+                  <button onClick={() => this.handleDeleteComment(comment._id)}>Delete</button>
+                )}
               </li>
             );
           })}
@@ -32,7 +38,7 @@ class CommentList extends Component {
     });
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.props.newComment !== prevProps.newComment) {
       this.setState({
         comments: [
@@ -41,6 +47,22 @@ class CommentList extends Component {
         ]
       })
     }
+    if (prevState.deletedComments !== this.state.deletedComments) {
+      this.setState({
+        comments: this.state.comments
+      })
+    }
+  }
+
+  handleDeleteComment = (commentId) => {
+    api.deleteComment(commentId).then(comment => {
+      this.setState({
+        deletedComments: [
+          ...this.state.deletedComments,
+          comment
+        ]
+      })
+    })
   }
 
   adjustVotes = (id, adjust, route) => {
