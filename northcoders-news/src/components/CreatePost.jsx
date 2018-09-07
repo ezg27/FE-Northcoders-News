@@ -13,7 +13,7 @@ class CreatePost extends Component {
       <div className="create-post-container">
         <button onClick={this.openModal}>Create Post</button>
         <Modal id="comment-overlay" isOpen={this.state.modalIsOpen}>
-          <PostArticle closeModal={this.closeModal}/>
+          <PostArticle closeModal={this.closeModal} topic={this.props.match.params.topic}/>
         </Modal>
       </div>
     );
