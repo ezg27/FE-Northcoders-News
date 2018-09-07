@@ -1,76 +1,56 @@
+import axios from 'axios';
 const DB_URL = 'https://whispering-wave-29555.herokuapp.com/api';
 
 export const fetchTopics = () => {
-  return fetch(`${DB_URL}/topics`)
-    .then(buffer => buffer.json())
-    .then(data => data.topics);
+  return axios.get(`${DB_URL}/topics`)
+    .then(({data}) => data.topics);
 };
 
 export const fetchArticles = () => {
-  return fetch(`${DB_URL}/articles`)
-    .then(buffer => buffer.json())
-    .then(data => data.articles);
+  return axios.get(`${DB_URL}/articles`)
+    .then(({data}) => data.articles);
 };
 
 export const fetchArticlesByTopic = topic => {
-  return fetch(`${DB_URL}/topics/${topic}/articles`)
-    .then(buffer => buffer.json())
-    .then(data => data.articles);
+  return axios.get(`${DB_URL}/topics/${topic}/articles`)
+    .then(({data}) => data.articles);
 };
 
 export const fetchArticleById = id => {
-  return fetch(`${DB_URL}/articles/${id}`)
-    .then(buffer => buffer.json())
-    .then(data => data.article);
+  return axios.get(`${DB_URL}/articles/${id}`)
+    .then(({data}) => data.article);
 };
 
 export const fetchCommentsByArticleId = id => {
-  return fetch(`${DB_URL}/articles/${id}/comments`)
-    .then(buffer => buffer.json())
-    .then(data => data.comments);
+  return axios.get(`${DB_URL}/articles/${id}/comments`)
+    .then(({data}) => data.comments);
 };
 
 export const adjustVoteCount = (id, adjust, route, repeats) => {
   let fetches = [];
   for (let i = 0; i < repeats; i++) {
     fetches.push(
-      fetch(`${DB_URL}/${route}/${id}?vote=${adjust}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+      axios.put(`${DB_URL}/${route}/${id}?vote=${adjust}`)
     );
   }
   return Promise.all(fetches);
 };
 
 export const fetchUser = username => {
-  return fetch(`${DB_URL}/users/${username}`)
-    .then(buffer => buffer.json())
-    .then(data => data.user);
+  return axios.get(`${DB_URL}/users/${username}`)
+    .then(({data}) => data.user);
 };
 
 export const addComment = (articleId, userId, comment) => {
-  const newComment = {
-    body: comment,
-    created_by: userId
-  }
-  return fetch(`${DB_URL}/articles/${articleId}/comments`, {
-    method: 'POST',
-    body: JSON.stringify(newComment),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(buffer => buffer.json())
-  .then(data => data.comment)
+  return axios
+    .post(`${DB_URL}/articles/${articleId}/comments`, {
+      body: comment,
+      created_by: userId
+    })
+    .then(({ data }) => data.comment);
 };
 
 export const deleteComment = (commentId) => {
-  return fetch(`${DB_URL}/comments/${commentId}`, {
-    method: 'DELETE'
-  })
-    .then(buffer => buffer.json())
-    .then(data => data.comment);
+  return axios.delete(`${DB_URL}/comments/${commentId}`)
+    .then(({data}) => data.comment);
 }
