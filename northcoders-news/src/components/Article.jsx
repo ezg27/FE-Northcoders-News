@@ -5,6 +5,7 @@ import CommentList from './CommentList';
 import Modal from 'react-modal';
 import Votes from './Votes';
 import PostComment from './PostComment';
+import { Redirect } from 'react-router-dom';
 
 // const customStyles = {
 //   content: {
@@ -28,9 +29,13 @@ class Article extends Component {
     article: {},
     voteChange: 0,
     modalIsOpen: false,
-    comment: {}
+    comment: {},
+    err: null
   };
   render() {
+    if (this.state.err) {
+      return <Redirect to='/error'/> 
+    }
     const { article, comment } = this.state;
     if (Object.keys(article).length === 0) return <p>loading...</p>
     else return (
@@ -53,10 +58,16 @@ class Article extends Component {
     );
   }
   componentDidMount() {
-    api.fetchArticleById(this.props.id).then(article => {
-      this.setState({
-        article
-      });
+    api.fetchArticleById(this.props.id).then(response => {
+      if (response.type === 'error') {
+        this.setState({
+          err: response
+        })
+      } else {
+        this.setState({
+          article: response
+        });
+      }
     });
   }
 

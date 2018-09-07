@@ -3,6 +3,7 @@ import './css/App.css';
 import * as api from './api';
 import MainPage from './components/MainPage';
 import Article from './components/Article';
+import ErrorPage from './components/ErrorPage';
 import { Switch, Link, Route } from 'react-router-dom';
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
             <Route exact path="/" component={MainPage} />
             <Route exact path="/articles" component={MainPage} />
             <Route path="/topics/:topic/articles" component={MainPage} />
+            <Route path='/error' component={ErrorPage} />
             <Route
               path="/articles/:article_id"
               render={({ match }) => {
