@@ -56,23 +56,25 @@ class Article extends Component {
           >
             <PostComment closeModal={this.closeModal} articleId={article._id} currentUser={this.props.currentUser} handleNewComment={this.handleNewComment}/>
           </Modal>
-          <CommentList id={this.props.id} currentUser={this.props.currentUser} newComment={comment}/>
+          <CommentList id={this.props.match.params.article_id} currentUser={this.props.currentUser} newComment={comment}/>
         </section>
       </div>
     );
   }
   componentDidMount() {
-    api.fetchArticleById(this.props.id).then(response => {
-      if (response.type === 'error') {
-        this.setState({
-          err: response
-        })
-      } else {
-        this.setState({
-          article: response
-        });
-      }
-    });
+    api
+      .fetchArticleById(this.props.match.params.article_id)
+      .then(response => {
+        if (response.type === 'error') {
+          this.setState({
+            err: response
+          });
+        } else {
+          this.setState({
+            article: response
+          });
+        }
+      });
   }
 
   handleNewComment = (comment) => {

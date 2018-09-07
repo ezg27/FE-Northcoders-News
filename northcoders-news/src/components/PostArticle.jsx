@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import * as api from '../api';
 
 class PostArticle extends Component {
   state = {
     newTitle: '',
     newArticle: '',
+    user: {}
     // topic: this.props.topic
   };
   render() {
@@ -27,7 +29,9 @@ class PostArticle extends Component {
           />
           <select
             required
-            defaultValue={this.props.topic === undefined ? 'choose' : this.props.topic}
+            defaultValue={
+              this.props.topic === undefined ? 'choose' : this.props.topic
+            }
           >
             <option value="choose" disabled>
               Choose topic...
@@ -43,7 +47,7 @@ class PostArticle extends Component {
   }
 
   componentDidMount() {
-
+    api.fetchUser(this.props.currentUser).then(user => this.setState({ user }));
   }
 
   handleTitleInput = e => {
@@ -56,6 +60,20 @@ class PostArticle extends Component {
     this.setState({
       newArticle: e.target.value
     });
+  };
+
+  handleSubmit = e => {
+    // e.preventDefault();
+    // api
+    //   .addArticle(
+    //     this.props.articleId,
+    //     this.state.user._id,
+    //     this.state.newComment
+    //   )
+    //   .then(newComment => {
+    //     this.props.handleNewComment(newComment);
+    //     this.props.closeModal();
+    //   });
   };
 }
 

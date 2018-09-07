@@ -28,14 +28,37 @@ class App extends Component {
         </header>
         <section>
           <Switch>
-            <Route exact path="/" component={MainPage} />
-            <Route exact path="/articles" component={MainPage} />
-            <Route path="/topics/:topic/articles" component={MainPage} />
-            <Route path='/error' component={ErrorPage} />
+            <Route
+              exact
+              path="/"
+              render={(props) => {
+                return <MainPage {...props} currentUser={this.state.currentUser} />;
+              }}
+            />
+            <Route
+              exact
+              path="/articles"
+              render={(props) => {
+                return <MainPage {...props} currentUser={this.state.currentUser} />;
+              }}
+            />
+            <Route
+              path="/topics/:topic/articles"
+              render={(props) => {
+                return <MainPage {...props} currentUser={this.state.currentUser} />;
+              }}
+            />
+            <Route path="/error" component={ErrorPage} />
             <Route
               path="/articles/:article_id"
-              render={({ match }) => {
-                return <Article id={match.params.article_id} currentUser={this.state.currentUser}/>;
+              render={props => {
+                return (
+                  <Article
+                    {...props}
+                    // id={match.params.article_id}
+                    currentUser={this.state.currentUser}
+                  />
+                );
               }}
             />
           </Switch>

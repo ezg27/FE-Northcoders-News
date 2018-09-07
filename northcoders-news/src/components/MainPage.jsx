@@ -10,7 +10,7 @@ class MainPage extends Component {
     return (
       <div className="content-container">
         <Articles {...this.props} />
-        <CreatePost {...this.props} />
+        <CreatePost {...this.props} currentuser={this.props.currentUser}/>
       </div>
     );
   }
