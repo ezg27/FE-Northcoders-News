@@ -3,6 +3,7 @@ import Votes from './Votes';
 import * as api from '../api';
 import '../css/CommentList.css';
 
+
 class CommentList extends Component {
   state = {
     comments: [],
@@ -15,7 +16,7 @@ class CommentList extends Component {
       <div>
         <ul className="comment-list">
           {this.state.comments.map(comment => {
-            return deletedComments.includes(comment) ? null : (
+            return deletedComments.includes(comment._id) ? null : (
               <li key={comment._id} className="comment">
                 <h6>{comment.created_by.username}</h6>
                 <p>{comment.body}</p>
@@ -38,18 +39,13 @@ class CommentList extends Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (this.props.newComment !== prevProps.newComment) {
       this.setState({
         comments: [
           ...this.state.comments,
           this.props.newComment
         ]
-      })
-    }
-    if (prevState.deletedComments !== this.state.deletedComments) {
-      this.setState({
-        comments: this.state.comments
       })
     }
   }
@@ -59,7 +55,7 @@ class CommentList extends Component {
       this.setState({
         deletedComments: [
           ...this.state.deletedComments,
-          comment
+          comment._id
         ]
       })
     })

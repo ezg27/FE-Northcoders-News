@@ -3,6 +3,9 @@ import Articles from './Articles';
 import CreatePost from './CreatePost';
 
 class MainPage extends Component {
+  state = {
+    newArticle: {}
+  }
   render() {
     return (
       <div className="content-container">
