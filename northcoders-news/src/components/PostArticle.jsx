@@ -16,12 +16,14 @@ class PostArticle extends Component {
         </button>
         <form className="article-form">
           <textarea
+            required
             onChange={this.handleTitleInput}
             className="title-input"
             placeholder="Add title..."
             value={this.state.newTitle}
           />
           <textarea
+            required
             onChange={this.handleArticleInput}
             className="article-input"
             placeholder="Share your thoughts..."
@@ -30,8 +32,9 @@ class PostArticle extends Component {
           <select
             required
             defaultValue={
-              this.state.topic === undefined ? 'choose' : this.state.topic
+              this.props.topic === undefined ? 'choose' : this.props.topic
             }
+            onChange={this.handleDropdown}
           >
             <option value="choose" disabled>
               Choose topic...
@@ -61,6 +64,12 @@ class PostArticle extends Component {
       newArticle: e.target.value
     });
   };
+
+  handleDropdown = (e) => {
+    this.setState({
+      topic: e.target.value
+    })
+  }
 
   handleSubmit = e => {
     e.preventDefault();

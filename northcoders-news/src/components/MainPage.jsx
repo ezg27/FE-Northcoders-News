@@ -15,6 +15,7 @@ class MainPage extends Component {
     );
   }
   handleNewArticle = (newArticle) => {
+    newArticle.created_by = { username: this.props.currentUser };
     this.setState({
       newArticle
     })

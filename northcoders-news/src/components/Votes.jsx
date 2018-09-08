@@ -10,7 +10,6 @@ class Votes extends Component {
   render() {
     return (
       <div>
-        <p>Votes: {this.state.item.votes + this.state.voteChange}</p>
         <VoteButton
           text={'Upvote'}
           adjustVotes={this.adjustVotes}
@@ -18,7 +17,8 @@ class Votes extends Component {
           voteChange={this.state.voteChange}
           route={this.props.route}
           button="up"
-        />
+          />
+          <p>{this.state.item.votes + this.state.voteChange}</p>
         <VoteButton
           text={'Downvote'}
           adjustVotes={this.adjustVotes}
@@ -34,7 +34,6 @@ class Votes extends Component {
     if (this.state.voteChange === 1 && button === 'down') repeats = 2;
     if (this.state.voteChange === -1 && button === 'up') repeats = 2;
     api.adjustVoteCount(id, adjust, route, repeats).then(arr => {
-
       this.setState({
         voteChange:
           adjust === 'up'
