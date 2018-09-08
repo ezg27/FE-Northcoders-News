@@ -5,8 +5,8 @@ class PostArticle extends Component {
   state = {
     newTitle: '',
     newArticle: '',
-    user: {}
-    // topic: this.props.topic
+    user: {},
+    topic: this.props.topic
   };
   render() {
     return (
@@ -30,7 +30,7 @@ class PostArticle extends Component {
           <select
             required
             defaultValue={
-              this.props.topic === undefined ? 'choose' : this.props.topic
+              this.state.topic === undefined ? 'choose' : this.state.topic
             }
           >
             <option value="choose" disabled>
@@ -63,17 +63,12 @@ class PostArticle extends Component {
   };
 
   handleSubmit = e => {
-    // e.preventDefault();
-    // api
-    //   .addArticle(
-    //     this.props.articleId,
-    //     this.state.user._id,
-    //     this.state.newComment
-    //   )
-    //   .then(newComment => {
-    //     this.props.handleNewComment(newComment);
-    //     this.props.closeModal();
-    //   });
+    e.preventDefault();
+    api.addArticle(this.state.user._id, this.state.topic, this.state.newTitle, this.state.newArticle)
+      .then(newArticle => {
+        this.props.handleNewArticle(newArticle);
+        this.props.closeModal();
+      })
   };
 }
 

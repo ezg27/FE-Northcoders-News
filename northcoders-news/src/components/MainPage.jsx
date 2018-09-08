@@ -9,10 +9,15 @@ class MainPage extends Component {
   render() {
     return (
       <div className="content-container">
-        <Articles {...this.props} />
-        <CreatePost {...this.props} currentuser={this.props.currentUser}/>
+        <Articles {...this.props} newArticle={this.state.newArticle}/>
+        <CreatePost {...this.props} currentUser={this.props.currentUser} handleNewArticle={this.handleNewArticle}/>
       </div>
     );
+  }
+  handleNewArticle = (newArticle) => {
+    this.setState({
+      newArticle
+    })
   }
 }
 

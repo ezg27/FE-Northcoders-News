@@ -15,7 +15,7 @@ class CommentList extends Component {
     return (
       <div>
         <ul className="comment-list">
-          {this.state.comments.map(comment => {
+          {this.state.comments[0] === undefined ? null : this.state.comments.map(comment => {
             return deletedComments.includes(comment._id) ? null : (
               <li key={comment._id} className="comment">
                 <h6>{comment.created_by.username}</h6>

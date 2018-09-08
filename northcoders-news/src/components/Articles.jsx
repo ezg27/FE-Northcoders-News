@@ -22,7 +22,7 @@ class Articles extends Component {
                 <p>Created by {article.created_by.username}</p>
                 <p>{article.created_at}</p>
                 <p>Comments: {article.comments}</p>
-                <Votes item={article} route='articles'/>
+                <Votes item={article} route="articles" />
               </li>
             );
           })}
@@ -33,9 +33,7 @@ class Articles extends Component {
 
   componentDidMount() {
     this.fetchArticles(this.props.match.params.topic).then(articles => {
-      this.setState({
-        articles
-      });
+      this.setState({ articles, topic: this.props.match.params.topic });
     });
   }
 
@@ -47,6 +45,14 @@ class Articles extends Component {
           articles
         });
       });
+    }
+    if (this.props.newArticle !== prevProps.newArticle) {
+      this.setState({
+        articles: [
+          ...this.state.articles,
+          this.props.newArticle
+        ]
+      })
     }
   }
 

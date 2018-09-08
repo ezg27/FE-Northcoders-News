@@ -55,7 +55,6 @@ class App extends Component {
                 return (
                   <Article
                     {...props}
-                    // id={match.params.article_id}
                     currentUser={this.state.currentUser}
                   />
                 );
