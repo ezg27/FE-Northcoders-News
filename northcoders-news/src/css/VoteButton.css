@@ -1,5 +1,9 @@
+.VoteButton {
+  display: inline-block;
+}
+
 .VoteButton:hover {
-  border-radius:100px;
+  border-radius: 100px;
   background-color: rgb(230, 230, 230);
 }
 

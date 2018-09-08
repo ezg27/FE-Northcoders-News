@@ -17,8 +17,8 @@ class Votes extends Component {
           voteChange={this.state.voteChange}
           route={this.props.route}
           button="up"
-          />
-          <p>{this.state.item.votes + this.state.voteChange}</p>
+        />
+        <p>{this.state.item.votes + this.state.voteChange}</p>
         <VoteButton
           text={'Downvote'}
           adjustVotes={this.adjustVotes}
@@ -30,6 +30,7 @@ class Votes extends Component {
       </div>
     );
   }
+
   adjustVotes = (id, adjust, route, button, repeats = 1) => {
     if (this.state.voteChange === 1 && button === 'down') repeats = 2;
     if (this.state.voteChange === -1 && button === 'up') repeats = 2;

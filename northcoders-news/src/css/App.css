@@ -15,3 +15,8 @@
   height: 60px;
   background-color: white;
 }
+
+.link {
+  text-decoration: none;
+  color: rgb(111, 111, 111);
+}
