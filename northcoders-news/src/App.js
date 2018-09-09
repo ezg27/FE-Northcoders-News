@@ -15,7 +15,7 @@ class App extends Component {
   };
   render() {
     return (
-      <div className="App">
+      <div className="App" style={{ backgroundImage: "url('../../images/paper.jpg')"}}>
         <NavBar topics={this.state.topics} />
         <section>
           <Switch>
