@@ -3,6 +3,16 @@
   border-radius: 5px;
   border: solid 1px rgb(167, 167, 167);
   box-shadow: 0 0 3px rgb(167, 167, 167);
+  grid-row: 2;
+}
+
+.modal-close {
+  float: right;
+  grid-row: 1;
+}
+
+.selector {
+  grid-row: 4;
 }
 
 .article-input {
@@ -10,4 +20,15 @@
   border-radius: 5px;
   border: solid 1px rgb(167, 167, 167);
   box-shadow: 0 0 3px rgb(167, 167, 167);
+  grid-row: 3;
 }
+
+.article-form {
+  display: grid;
+  grid-gap: 15px;
+}
+
+/* .submit-button {
+  grid-column: 1;
+  grid-row: 2;
+} */

@@ -1,13 +1,9 @@
-/* .newsfeed-container {
-  height: 100%;
-  border-radius: 5px;
-} */
-
 .article-list {
   list-style-type: none;
   padding: 10px 10px;
   text-align: start;
-  margin: 10px;
+  margin: 10px auto;
+  width: 80%;
 }
 
 .list-item {
@@ -71,4 +67,10 @@ p {
 
 .vote-count {
   margin: 10px 0;
+}
+
+@media screen and (max-width: 992px) {
+  .article-list {
+    width: 90%;
+  }
 }

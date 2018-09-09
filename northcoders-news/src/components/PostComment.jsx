@@ -12,8 +12,8 @@ class PostComment extends Component {
       <div className='create-comment-container'>
         <button onClick={this.props.closeModal} className='modal-close'>X</button>
         <form className='comment-form'>
-          <textarea onChange={this.handleInput} className='comment-input' />
-          <button onClick={this.handleSubmit} >Post comment</button>
+          <textarea onChange={this.handleInput} className='comment-input' placeholder='Add comment...'/>
+          <button onClick={this.handleSubmit} className='submit-button'>Post comment</button>
         </form>
       </div>
     );

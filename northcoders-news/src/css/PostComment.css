@@ -1,9 +1,6 @@
-.create-comment-container {
-  
-}
-
 .comment-form {
   display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
 }
 
 .modal-close {
@@ -11,8 +8,17 @@
 }
 
 .comment-input {
-  width: 70%;
-  margin: auto;
-  height: 200px;
+  grid-column: 2;
+  grid-row: 2;
+  width: 90%;
+  margin:  10px auto;
+  height: 150px;
   resize: none;
+  border-radius: 5px;
+  border: solid rgba(40, 40, 40, 0.386) 1px;
+}
+
+.submit-button {
+  grid-column: 2;
+  grid-row: 3;
 }

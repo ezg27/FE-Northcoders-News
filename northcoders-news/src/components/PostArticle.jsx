@@ -13,7 +13,7 @@ class PostArticle extends Component {
     const { newTitle, newArticle } = this.state;
     const isEnabled = newTitle.length > 0 && newArticle.length > 0;
     return (
-      <div>
+      <div className='post-article'>
         <button onClick={this.props.closeModal} className="modal-close">
           X
         </button>
@@ -38,6 +38,7 @@ class PostArticle extends Component {
               this.props.topic === undefined ? 'choose' : this.props.topic
             }
             onChange={this.handleDropdown}
+            className='selector'
           >
             <option value="choose" disabled>
               Choose topic...
@@ -46,7 +47,7 @@ class PostArticle extends Component {
             <option value="football">Football</option>
             <option value="cooking">Cooking</option>
           </select>
-          <button disabled={!isEnabled} onClick={this.handleSubmit}>
+          <button disabled={!isEnabled} onClick={this.handleSubmit} className='submit-button'>
             Post article
           </button>
         </form>
