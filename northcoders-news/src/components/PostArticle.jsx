@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import '../css/PostArticle.css';
 
 class PostArticle extends Component {
   state = {
@@ -9,6 +10,8 @@ class PostArticle extends Component {
     topic: this.props.topic
   };
   render() {
+    const { newTitle, newArticle } = this.state;
+    const isEnabled = newTitle.length > 0 && newArticle.length > 0;
     return (
       <div>
         <button onClick={this.props.closeModal} className="modal-close">
@@ -43,7 +46,9 @@ class PostArticle extends Component {
             <option value="football">Football</option>
             <option value="cooking">Cooking</option>
           </select>
-          <button onClick={this.handleSubmit}>Post article</button>
+          <button disabled={!isEnabled} onClick={this.handleSubmit}>
+            Post article
+          </button>
         </form>
       </div>
     );
@@ -65,19 +70,25 @@ class PostArticle extends Component {
     });
   };
 
-  handleDropdown = (e) => {
+  handleDropdown = e => {
     this.setState({
       topic: e.target.value
-    })
-  }
+    });
+  };
 
   handleSubmit = e => {
     e.preventDefault();
-    api.addArticle(this.state.user._id, this.state.topic, this.state.newTitle, this.state.newArticle)
+    api
+      .addArticle(
+        this.state.user._id,
+        this.state.topic,
+        this.state.newTitle,
+        this.state.newArticle
+      )
       .then(newArticle => {
         this.props.handleNewArticle(newArticle);
         this.props.closeModal();
-      })
+      });
   };
 }
 

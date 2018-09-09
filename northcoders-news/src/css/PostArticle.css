@@ -1,0 +1,13 @@
+.title-input {
+  resize: none;
+  border-radius: 5px;
+  border: solid 1px rgb(167, 167, 167);
+  box-shadow: 0 0 3px rgb(167, 167, 167);
+}
+
+.article-input {
+  resize: none;
+  border-radius: 5px;
+  border: solid 1px rgb(167, 167, 167);
+  box-shadow: 0 0 3px rgb(167, 167, 167);
+}
