@@ -9,8 +9,8 @@ class MainPage extends Component {
   render() {
     return (
       <div className="content-container">
-        <Articles {...this.props} newArticle={this.state.newArticle}/>
         <CreatePost {...this.props} currentUser={this.props.currentUser} handleNewArticle={this.handleNewArticle}/>
+        <Articles {...this.props} newArticle={this.state.newArticle}/>
       </div>
     );
   }

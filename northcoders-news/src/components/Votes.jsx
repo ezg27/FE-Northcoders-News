@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import VoteButton from './VoteButton';
+import '../css/Articles.css';
 
 class Votes extends Component {
   state = {
@@ -9,7 +10,7 @@ class Votes extends Component {
   };
   render() {
     return (
-      <div>
+      <div className='votes'>
         <VoteButton
           text={'Upvote'}
           adjustVotes={this.adjustVotes}
@@ -18,7 +19,7 @@ class Votes extends Component {
           route={this.props.route}
           button="up"
         />
-        <p>{this.state.item.votes + this.state.voteChange}</p>
+        <p className='vote-count'>{this.state.item.votes + this.state.voteChange}</p>
         <VoteButton
           text={'Downvote'}
           adjustVotes={this.adjustVotes}

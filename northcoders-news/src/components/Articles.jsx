@@ -3,6 +3,7 @@ import Votes from './Votes';
 import * as api from '../api';
 import '../css/Articles.css';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 class Articles extends Component {
   state = {
@@ -14,17 +15,23 @@ class Articles extends Component {
       <div className="newsfeed-container">
         <ul className="article-list">
           {articles.map(article => {
-            return (
-              <li key={article._id} className="list-item">
-                <Link to={{ pathname: `/articles/${article._id}` }}>
-                  <h4>{article.title}</h4>
-                </Link>
-                <p>Created by {article.created_by.username}</p>
-                <p>{article.created_at}</p>
-                <p>Comments: {article.comments}</p>
-                <Votes item={article} route="articles" />
-              </li>
-            );
+            return <li key={article._id}>
+                <div className="list-item">
+                <Link to={{ pathname: `/articles/${article._id}` }} className="article">
+                    <h4>{article.title}</h4>
+                    <p className="created-by">
+                      Created by {article.created_by.username}
+                    </p>
+                    <p className="timestamp">
+                      {moment(article.created_at).format('lll')}
+                    </p>
+                    <p className="comment-count">
+                      Comments: {article.comments}
+                    </p>
+                  </Link>
+                  <Votes item={article} route="articles" />
+                </div>
+              </li>;
           })}
         </ul>
       </div>
@@ -48,11 +55,8 @@ class Articles extends Component {
     }
     if (this.props.newArticle !== prevProps.newArticle) {
       this.setState({
-        articles: [
-          ...this.state.articles,
-          this.props.newArticle
-        ]
-      })
+        articles: [...this.state.articles, this.props.newArticle]
+      });
     }
   }
 
