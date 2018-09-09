@@ -14,6 +14,7 @@ class Articles extends Component {
     return (
       <div className="newsfeed-container">
         <ul className="article-list">
+        {/* <select name="" id=""></select> */}
           {articles.map(article => {
             return <li key={article._id}>
                 <div className="list-item">

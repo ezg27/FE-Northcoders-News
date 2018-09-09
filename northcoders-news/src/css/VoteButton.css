@@ -1,5 +1,6 @@
 .VoteButton {
   display: inline-block;
+  font-size: 25px;
 }
 
 .VoteButton:hover {
