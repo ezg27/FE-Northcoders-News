@@ -2,7 +2,7 @@
 
 This is the Northcoders News Application. The app provides the front-end presentation for my NC News API.
 
-APP URL:
+APP URL: https://wonderful-mclean-5c9dc6.netlify.com/
 API URL: https://whispering-wave-29555.herokuapp.com/
 ### Getting Started
 
