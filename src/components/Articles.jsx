@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Votes from './Votes';
 import * as api from '../api';
 import '../css/Articles.css';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import moment from 'moment';
 
@@ -12,6 +12,7 @@ class Articles extends Component {
   };
   render() {
     const { articles } = this.state;
+    if (this.state.err) return <Redirect to={{ pathname: '/error', state: { from: 'topics' } }} />;
     if (Object.keys(articles).length === 0) {
       return <div className="loading-div">
         <CircularProgress size={50} color='secondary' />
@@ -47,8 +48,12 @@ class Articles extends Component {
   }
 
   componentDidMount() {
-    this.fetchArticles(this.props.match.params.topic).then(articles => {
-      this.setState({ articles, topic: this.props.match.params.topic });
+    this.fetchArticles(this.props.match.params.topic).then(response => {
+      if (response.type === 'error') {
+        this.setState({
+          err: response
+        });
+      } else this.setState({ articles: response, topic: this.props.match.params.topic });
     });
   }
 

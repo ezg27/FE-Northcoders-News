@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import '../css/ErrorPage.css';
 
 class ErrorPage extends Component {
   
   render() {
     const linkVal = this.props.location.state.from === 'article' ? 'articles' : 'topics'
     return (
-      <div>
-        <p>hello</p>
+      <div className='error-container'>
+        <h3>Error! We're very sorry, page not found!</h3>
         <Link to=''>
           <button>Back to {linkVal}</button>
         </Link>
