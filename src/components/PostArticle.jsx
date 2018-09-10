@@ -10,8 +10,8 @@ class PostArticle extends Component {
     topic: this.props.topic
   };
   render() {
-    const { newTitle, newArticle } = this.state;
-    const isEnabled = newTitle.length > 0 && newArticle.length > 0;
+    const { newTitle, newArticle, topic } = this.state;
+    const isEnabled = newTitle.length > 0 && newArticle.length > 0 && topic !== undefined;
     return (
       <div className='post-article'>
         <button onClick={this.props.closeModal} className="modal-close">
@@ -19,14 +19,12 @@ class PostArticle extends Component {
         </button>
         <form className="article-form">
           <textarea
-            required
             onChange={this.handleTitleInput}
             className="title-input"
             placeholder="Add title..."
             value={this.state.newTitle}
           />
           <textarea
-            required
             onChange={this.handleArticleInput}
             className="article-input"
             placeholder="Share your thoughts..."

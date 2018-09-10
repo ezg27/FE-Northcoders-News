@@ -7,6 +7,7 @@ import Votes from './Votes';
 import Button from '@material-ui/core/Button';
 import PostComment from './PostComment';
 import { Redirect } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 
 const customStyles = {
@@ -28,6 +29,7 @@ Modal.setAppElement('#root');
 
 class Article extends Component {
   state = {
+    completetd: 0,
     article: {},
     voteChange: 0,
     modalIsOpen: false,
@@ -47,15 +49,23 @@ class Article extends Component {
         />
       );
     const { article, comment } = this.state;
-    if (Object.keys(article).length === 0) return <p>loading...</p>;
-    else
+    if (Object.keys(article).length === 0) {
+      return <div className="loading-div">
+          <CircularProgress size={50} color='secondary' />
+          <p>Loading...</p>
+        </div>;
+    } else {
       return (
         <div className="article-container">
-          <section className='article-body'>
+          <section className="article-body">
             <h1>{article.title}</h1>
             <p>{article.body}</p>
-            <Votes item={article} route="articles" className='article-votes'/>
-            <Button variant="contained" onClick={this.openModal} className='button'>
+            <Votes item={article} route="articles" className="article-votes" />
+            <Button
+              variant="contained"
+              onClick={this.openModal}
+              className="button"
+            >
               Add comment
             </Button>
             <Modal
@@ -70,14 +80,15 @@ class Article extends Component {
                 handleNewComment={this.handleNewComment}
               />
             </Modal>
-            </section>
-            <CommentList
-              id={this.props.match.params.article_id}
-              currentUser={this.props.currentUser}
-              newComment={comment}
-            />
+          </section>
+          <CommentList
+            id={this.props.match.params.article_id}
+            currentUser={this.props.currentUser}
+            newComment={comment}
+          />
         </div>
       );
+    }
   }
   componentDidMount() {
     api.fetchArticleById(this.props.match.params.article_id).then(response => {

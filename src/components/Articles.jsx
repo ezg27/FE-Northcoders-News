@@ -3,6 +3,7 @@ import Votes from './Votes';
 import * as api from '../api';
 import '../css/Articles.css';
 import { Link } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import moment from 'moment';
 
 class Articles extends Component {
@@ -11,6 +12,12 @@ class Articles extends Component {
   };
   render() {
     const { articles } = this.state;
+    if (Object.keys(articles).length === 0) {
+      return <div className="loading-div">
+        <CircularProgress size={50} color='secondary' />
+        <p>Loading...</p>
+      </div>;
+    }
     return (
       <div className="newsfeed-container">
         <ul className="article-list">
