@@ -10,8 +10,7 @@ import NavBar from './components/NavBar';
 class App extends Component {
   state = {
     currentUser: 'jessjelly',
-    topics: [],
-    value: 0
+    topics: []
   };
   render() {
     return (

@@ -4,14 +4,19 @@ This is the Northcoders News Application. The app provides the front-end present
 
 APP URL: https://wonderful-mclean-5c9dc6.netlify.com/
 API URL: https://whispering-wave-29555.herokuapp.com/
+Backend repo: https://github.com/ezg27/BE2-northcoders-news
+
 ### Getting Started
 
-#### Prerequisites:
+#### Prerequisites
+* Node - v10.6.0
+* Git
+
+#### Dependencies:
 * Moment JS - https://momentjs.com/
 * Material UI - https://material-ui.com/
 * React Router - https://reacttraining.com/react-router/
 * React Modal - https://www.npmjs.com/package/react-modal
-* Terminal
 
 ### Installing
 

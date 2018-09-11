@@ -33,7 +33,7 @@ export const fetchCommentsByArticleId = errorHandling(id => {
 });
 
 export const adjustVoteCount = errorHandling((id, adjust, route, repeats) => {
-  let fetches = [];
+  const fetches = [];
   for (let i = 0; i < repeats; i++) {
     fetches.push(axios.put(`${DB_URL}/${route}/${id}?vote=${adjust}`));
   }

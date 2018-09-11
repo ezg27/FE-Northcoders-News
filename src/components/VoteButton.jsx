@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../css/VoteButton.css';
 
 class VoteButton extends Component {
+  state = {
+
+  }
   render() {
     let adjust = '';
-    if (this.props.button === 'up')
-    adjust = this.props.voteChange === 1 ? 'down' : 'up';
-    else adjust = this.props.voteChange === -1 ? 'up' : 'down';
+    adjust = this.props.button === 'up' ? (this.props.voteChange === 1 ? 'down' : 'up') : (this.props.voteChange === -1 ? 'up' : 'down');
     return (
       <div>
         <FontAwesomeIcon
@@ -32,26 +33,6 @@ class VoteButton extends Component {
               );
             }}
             />
-        {/* <FontAwesomeIcon
-          icon={
-            this.props.voteChange === -1
-            ? ['fas', 'arrow-alt-circle-down']
-            : ['far', 'arrow-alt-circle-down']
-          }
-          style={
-            this.props.voteChange === -1
-            ? { color: '#33adff' }
-            : { color: 'black' }
-          }
-          onClick={() => {
-            this.props.adjustVotes(
-              this.props.itemId,
-              adjust,
-              this.props.route,
-              this.props.button
-            );
-          }}
-        /> */}
       </div>
     );
   }
