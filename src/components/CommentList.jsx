@@ -19,7 +19,7 @@ class CommentList extends Component {
             : this.state.comments.map(comment => {
                 return deletedComments.includes(comment._id) ? null : (
                   <li key={comment._id} className="comment">
-                    <h6>{comment.created_by.username}</h6>
+                    <h6 className='comment-user'>{comment.created_by.username}</h6>
                     <p className="comment-text">{comment.body}</p>
                     <Votes item={comment} route="comments" />
                     {comment.created_by.username === this.state.currentUser && (

@@ -43,7 +43,8 @@ class Article extends Component {
           to={{
             pathname: '/error',
             state: {
-              from: 'article'
+              from: 'article',
+              err: this.state.err
             }
           }}
         />
@@ -55,7 +56,7 @@ class Article extends Component {
         <div className="article-container">
           <section className="article-body">
             <h1>{article.title}</h1>
-            <p>{article.body}</p>
+            <p className='article-text'>{article.body}</p>
             <Votes item={article} route="articles" className="article-votes" />
             <Button
               variant="contained"

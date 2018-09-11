@@ -33,9 +33,9 @@ h4 {
   margin: 12px 5px;
 }
 
-p {
+/* p {
   margin: 8px 5px;
-}
+} */
 
 .created-by {
   grid-column: 1;
@@ -55,7 +55,7 @@ p {
   padding: 10px;
   background-color: rgb(237, 237, 237);
   border-radius: 4px;
-  margin-right: 8px;
+  /* margin-right: 8px; */
   box-shadow: 1px 2px 3px rgb(154, 154, 154);
 }
 

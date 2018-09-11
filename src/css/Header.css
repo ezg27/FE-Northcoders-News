@@ -6,7 +6,6 @@
   font-size: 11.25px;
   height: 100%;
   text-decoration: none;
-  /* margin: 0 -10px; */
 }
 
 .NC-logo {
@@ -21,8 +20,4 @@ h1 {
   margin: 3px 5px;
   grid-column: 2;
   color: rgb(70, 70, 70);
-}
-
-.app-bar {
-  /* display: inline-block; */
 }

@@ -15,10 +15,11 @@ class App extends Component {
   };
   render() {
     return (
-      <div
-        className="App"
-      >
-        <div className="body-bg-image" style={{background: `url(${typewriter}) center`}}></div>
+      <div className="App">
+        <div
+          className="body-bg-image"
+          style={{ background: `url(${typewriter}) center` }}
+        />
         <NavBar topics={this.state.topics} />
         <section>
           <Switch>
@@ -48,7 +49,6 @@ class App extends Component {
                 );
               }}
             />
-            <Route path="/error" component={ErrorPage} />
             <Route
               path="/articles/:article_id"
               render={props => {
@@ -57,6 +57,7 @@ class App extends Component {
                 );
               }}
             />
+            <Route path='*' component={ErrorPage} />
           </Switch>
         </section>
       </div>
