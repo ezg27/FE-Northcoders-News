@@ -3,21 +3,19 @@ import Votes from './Votes';
 import * as api from '../api';
 import '../css/Articles.css';
 import { Link, Redirect } from 'react-router-dom';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import moment from 'moment';
+import Loading from './Loading';
 
 class Articles extends Component {
   state = {
-    articles: []
+    articles: [],
+    err: null
   };
   render() {
     const { articles } = this.state;
-    if (this.state.err) return <Redirect to={{ pathname: '/error', state: { from: 'topics' } }} />;
+    if (this.state.err) return <Redirect to={{ pathname: '/error', state: { from: 'topics', err: this.state.err } }} />;
     if (Object.keys(articles).length === 0) {
-      return <div className="loading-div">
-        <CircularProgress size={50} color='secondary' />
-        <p>Loading...</p>
-      </div>;
+      return <Loading />
     }
     return (
       <div className="newsfeed-container">

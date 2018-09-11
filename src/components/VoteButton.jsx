@@ -4,7 +4,7 @@ import '../css/VoteButton.css';
 
 class VoteButton extends Component {
   state = {
-
+    err: false
   }
   render() {
     let adjust = '';

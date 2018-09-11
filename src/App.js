@@ -6,6 +6,7 @@ import Article from './components/Article';
 import ErrorPage from './components/ErrorPage';
 import { Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
+import typewriter from './images/typewriter.jpg';
 
 class App extends Component {
   state = {
@@ -17,7 +18,7 @@ class App extends Component {
       <div
         className="App"
       >
-        <div className="body-bg-image" style={{background: 'url(../../images/typewriter.jpg) center'}}></div>
+        <div className="body-bg-image" style={{background: `url(${typewriter}) center`}}></div>
         <NavBar topics={this.state.topics} />
         <section>
           <Switch>

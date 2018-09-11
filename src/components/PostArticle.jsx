@@ -19,16 +19,18 @@ class PostArticle extends Component {
         </button>
         <form className="article-form">
           <textarea
-            onChange={this.handleTitleInput}
+            onChange={this.handleInput}
             className="title-input"
             placeholder="Add title..."
             value={this.state.newTitle}
+            name='newTitle'
           />
           <textarea
-            onChange={this.handleArticleInput}
+            onChange={this.handleInput}
             className="article-input"
             placeholder="Share your thoughts..."
             value={this.state.newArticle}
+            name='newArticle'
           />
           <select
             required
@@ -57,15 +59,9 @@ class PostArticle extends Component {
     api.fetchUser(this.props.currentUser).then(user => this.setState({ user }));
   }
 
-  handleTitleInput = e => {
+  handleInput = ({ target }) => {
     this.setState({
-      newTitle: e.target.value
-    });
-  };
-
-  handleArticleInput = e => {
-    this.setState({
-      newArticle: e.target.value
+      [target.name]: target.value
     });
   };
 

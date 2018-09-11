@@ -7,8 +7,8 @@ import Votes from './Votes';
 import Button from '@material-ui/core/Button';
 import PostComment from './PostComment';
 import { Redirect } from 'react-router-dom';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
+import Loading from './Loading';
 
 const customStyles = {
   content: {
@@ -49,12 +49,8 @@ class Article extends Component {
         />
       );
     const { article, comment } = this.state;
-    if (Object.keys(article).length === 0) {
-      return <div className="loading-div">
-          <CircularProgress size={50} color='secondary' />
-          <p>Loading...</p>
-        </div>;
-    } else {
+    if (Object.keys(article).length === 0) return <Loading />;
+    else {
       return (
         <div className="article-container">
           <section className="article-body">

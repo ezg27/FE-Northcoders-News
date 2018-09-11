@@ -35,11 +35,13 @@ class PostComment extends Component {
   componentDidMount() {
     api.fetchUser(this.props.currentUser).then(user => this.setState({ user }));
   }
+
   handleInput = e => {
     this.setState({
       newComment: e.target.value
     });
   };
+  
   handleSubmit = e => {
     e.preventDefault();
     api
