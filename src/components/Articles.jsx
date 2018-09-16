@@ -30,7 +30,7 @@ class Articles extends Component {
                       Created by {article.created_by.username}
                     </p>
                     <p className="timestamp">
-                      {article.created_at}
+                      {moment(article.created_at).format('lll')}
                     </p>
                     <p className="comment-count">
                       Comments: {article.comments}
@@ -52,7 +52,7 @@ class Articles extends Component {
           err: response
         });
       } else {
-        const articles = orderBy(response, article => new moment(article.created_at).format('lll'));
+        const articles = orderBy(response, article => article.created_at, ['desc']);
         this.setState({ articles, topic: this.props.match.params.topic });
       }
     });
