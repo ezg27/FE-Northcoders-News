@@ -29,13 +29,10 @@
   margin-left: 20px;
 }
 
-h4 {
-  margin: 12px 5px;
+.articles-title {
+  margin: 12px 0;
+  padding-top: 5px;
 }
-
-/* p {
-  margin: 8px 5px;
-} */
 
 .created-by {
   grid-column: 1;
@@ -44,6 +41,7 @@ h4 {
 
 .timestamp {
   float: right;
+  margin-right: 10px;
   font-size: 12px;
 }
 
@@ -55,14 +53,13 @@ h4 {
   padding: 10px;
   background-color: rgb(237, 237, 237);
   border-radius: 4px;
-  /* margin-right: 8px; */
   box-shadow: 1px 2px 3px rgb(154, 154, 154);
 }
 
 .comment-count {
   grid-column: 3;
   font-size: 12px;
-  margin: 15px 5px 0;
+  margin: 18px 0 0;
 }
 
 .vote-count {

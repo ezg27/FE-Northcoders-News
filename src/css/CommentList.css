@@ -14,7 +14,6 @@
   margin: 10px 0;
   padding: 15px;
   box-shadow: 0px 2px 8px rgb(123, 123, 123);
-  /* align-items: center; */
 }
 
 .comment-user {
@@ -24,7 +23,6 @@
 
 .comment-text {
   grid-column: 2;
-  bottom: 50px;
   padding-left: 6px;
 }
 
@@ -40,6 +38,5 @@
 @media screen and (max-width: 992px) {
   .delete-button {
     grid-column: 2;
-    /* grid-row: 3; */
   }
 }

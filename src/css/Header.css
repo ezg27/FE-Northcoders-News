@@ -16,7 +16,7 @@
   margin: 10px auto 0;
 }
 
-h1 {
+.news-header {
   margin: 3px 5px;
   grid-column: 2;
   color: rgb(70, 70, 70);
