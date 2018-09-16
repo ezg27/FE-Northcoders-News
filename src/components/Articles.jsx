@@ -52,7 +52,7 @@ class Articles extends Component {
           err: response
         });
       } else {
-        const articles = orderBy(response, article => article.created_at, ['desc']);
+        const articles = this.orderByTimestamp(response);
         this.setState({ articles, topic: this.props.match.params.topic });
       }
     });
@@ -61,7 +61,8 @@ class Articles extends Component {
   componentDidUpdate(prevProps) {
     const { topic } = this.props.match.params;
     if (prevProps.match.params.topic !== topic) {
-      this.fetchArticles(topic).then(articles => {
+      this.fetchArticles(topic).then(response => {
+        const articles = this.orderByTimestamp(response);
         this.setState({
           articles
         });
@@ -72,6 +73,14 @@ class Articles extends Component {
         articles: [this.props.newArticle, ...this.state.articles]
       });
     }
+  }
+
+  orderByTimestamp = response => {
+    return orderBy(
+      response,
+      article => article.created_at,
+      ['desc']
+    );
   }
 
   fetchArticles = topic => {
