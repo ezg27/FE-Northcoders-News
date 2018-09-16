@@ -4,6 +4,7 @@ import * as api from '../api';
 import '../css/Articles.css';
 import { Link, Redirect } from 'react-router-dom';
 import moment from 'moment';
+import { orderBy } from 'lodash';
 import Loading from './Loading';
 
 class Articles extends Component {
@@ -20,17 +21,16 @@ class Articles extends Component {
     return (
       <div className="newsfeed-container">
         <ul className="article-list">
-        {/* <select name="" id=""></select> */}
           {articles.map(article => {
             return <li key={article._id}>
                 <div className="list-item">
                 <Link to={{ pathname: `/articles/${article._id}` }} className="article">
-                    <h4>{article.title}</h4>
+                    <h4 className='articles-title'>{article.title}</h4>
                     <p className="created-by">
                       Created by {article.created_by.username}
                     </p>
                     <p className="timestamp">
-                      {moment(article.created_at).format('lll')}
+                      {article.created_at}
                     </p>
                     <p className="comment-count">
                       Comments: {article.comments}
@@ -51,7 +51,10 @@ class Articles extends Component {
         this.setState({
           err: response
         });
-      } else this.setState({ articles: response, topic: this.props.match.params.topic });
+      } else {
+        const articles = orderBy(response, article => new moment(article.created_at).format('lll'));
+        this.setState({ articles, topic: this.props.match.params.topic });
+      }
     });
   }
 
@@ -66,7 +69,7 @@ class Articles extends Component {
     }
     if (this.props.newArticle !== prevProps.newArticle) {
       this.setState({
-        articles: [...this.state.articles, this.props.newArticle]
+        articles: [this.props.newArticle, ...this.state.articles]
       });
     }
   }
