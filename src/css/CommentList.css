@@ -17,12 +17,13 @@
 }
 
 .comment-user {
-  margin: 10px 0 0;
+  margin: 10px 10px 0;
   padding-left: 6px;
 }
 
 .comment-text {
   grid-column: 2;
+  margin-left: 10px;
   padding-left: 6px;
 }
 
@@ -32,11 +33,28 @@
 
 .delete-button {
   grid-column: 3;
-  width: 50px;
+  grid-row: 1;
+  margin: auto;
+  margin-left: 75px;
+  width: 60px;
+}
+
+.comment-timestamp {
+  grid-column: 3;
+  grid-row: 3;
+  text-align: center;
+  width: 150px;
+  font-size: 12px;
 }
 
 @media screen and (max-width: 992px) {
   .delete-button {
     grid-column: 2;
+    grid-row: 3;
+    margin: auto;
+  }
+  .comment-timestamp {
+    grid-column: 2;
+    grid-row: 4;
   }
 }

@@ -47,6 +47,7 @@ class Articles extends Component {
 
   componentDidMount() {
     this.fetchArticles(this.props.match.params.topic).then(response => {
+      console.log(response)
       if (response.type === 'error') {
         this.setState({
           err: response
