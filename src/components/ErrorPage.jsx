@@ -12,7 +12,7 @@ class ErrorPage extends Component {
         <Link to="">
           <button>Back to {linkVal}</button>
         </Link>
-      </div>;
+      </div>
   }
 }
 
