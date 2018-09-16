@@ -63,4 +63,10 @@
     grid-column: 2;
     grid-row: 3;
   }
+  .article-page-title {
+    margin-left: 15px;
+  }
+  .article-text {
+    margin-left: 15px;
+  }
 }
