@@ -9,8 +9,8 @@ Backend repo: https://github.com/ezg27/BE2-northcoders-news
 ### Getting Started
 
 #### Prerequisites
-* Node - v10.6.0
-* Git
+* Node - version 10.6.0
+* Git - version 2.17.1
 
 #### Dependencies:
 * Moment JS - https://momentjs.com/

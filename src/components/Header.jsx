@@ -9,7 +9,7 @@ const Header = () => {
         <img src={northcodersLogoDark} alt="northcoders-logo" className="NC-logo" />
         <h1 className='news-header'>NEWS</h1>
       </Link>
-    </div>;
+    </div>
 };
 
 export default Header;
