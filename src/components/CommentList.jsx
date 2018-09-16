@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Votes from './Votes';
 import * as api from '../api';
 import moment from 'moment';
+import { orderBy } from 'lodash';
 import '../css/CommentList.css';
 
 class CommentList extends Component {
@@ -18,28 +19,34 @@ class CommentList extends Component {
           {this.state.comments[0] === undefined
             ? null
             : this.state.comments.map(comment => {
-                return deletedComments.includes(comment._id) ? null : <li key={comment._id} className="comment">
+                return deletedComments.includes(comment._id) ? null : (
+                  <li key={comment._id} className="comment">
                     <h6 className="comment-user">
                       {comment.created_by.username}
                     </h6>
-                    <p className="comment-text">
-                      {comment.body}
-                    </p>
+                    <p className="comment-text">{comment.body}</p>
                     <Votes item={comment} route="comments" />
-                    {comment.created_by.username === this.state.currentUser && <button onClick={() => this.handleDeleteComment(comment._id)} className="delete-button">
+                    {comment.created_by.username === this.state.currentUser && (
+                      <button
+                        onClick={() => this.handleDeleteComment(comment._id)}
+                        className="delete-button"
+                      >
                         Delete
-                      </button>}
+                      </button>
+                    )}
                     <p className="comment-timestamp">
                       {moment(comment.created_at).format('lll')}
                     </p>
-                  </li>;
+                  </li>
+                );
               })}
         </ul>
       </div>
     );
   }
   componentDidMount() {
-    api.fetchCommentsByArticleId(this.props.id).then(comments => {
+    api.fetchCommentsByArticleId(this.props.id).then(response => {
+      const comments = this.orderByTimestamp(response);
       this.setState({
         comments
       });
@@ -53,6 +60,10 @@ class CommentList extends Component {
       });
     }
   }
+
+  orderByTimestamp = response => {
+    return orderBy(response, comment => comment.created_at, ['desc']);
+  };
 
   handleDeleteComment = commentId => {
     api.deleteComment(commentId).then(comment => {
