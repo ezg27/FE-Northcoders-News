@@ -7,7 +7,7 @@ const Header = () => {
   return <div>
       <Link to="/" className="header-container">
         <img src={northcodersLogoDark} alt="northcoders-logo" className="NC-logo" />
-        <h1>NEWS</h1>
+        <h1 className='news-header'>NEWS</h1>
       </Link>
     </div>;
 };

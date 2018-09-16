@@ -7,11 +7,12 @@ class PostArticle extends Component {
     newTitle: '',
     newArticle: '',
     user: {},
-    topic: this.props.topic
+    selectedTopic: null
   };
   render() {
-    const { newTitle, newArticle, topic } = this.state;
-    const isEnabled = newTitle.length > 0 && newArticle.length > 0 && topic !== undefined;
+    const { newTitle, newArticle, selectedTopic } = this.state;
+    const topic = selectedTopic || this.props.topic;
+    const isEnabled = newTitle.length > 0 && newArticle.length > 0 && topic;
     return (
       <div className='post-article'>
         <button onClick={this.props.closeModal} className="modal-close">
@@ -57,13 +58,16 @@ class PostArticle extends Component {
 
   componentDidMount() {
     api.fetchUser(this.props.currentUser).then(user => this.setState({ user }));
+    this.setState({
+
+    })
   }
 
   handleInput = ({ target }) => {
     this.setState({
       [target.name]: target.value
     });
-  };
+  }; // handleChange to combine both of these vvvv
 
   handleDropdown = e => {
     this.setState({
@@ -73,12 +77,14 @@ class PostArticle extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const { selectedTopic, newTitle, newArticle, user } = this.state;
+    const topic = selectedTopic || this.props.topic;
     api
       .addArticle(
-        this.state.user._id,
-        this.state.topic,
-        this.state.newTitle,
-        this.state.newArticle
+        user._id,
+        topic,
+        newTitle,
+        newArticle
       )
       .then(newArticle => {
         this.props.handleNewArticle(newArticle);

@@ -55,7 +55,7 @@ class Article extends Component {
       return (
         <div className="article-container">
           <section className="article-body">
-            <h1>{article.title}</h1>
+            <h1 className='article-page-title'>{article.title}</h1>
             <p className='article-text'>{article.body}</p>
             <Votes item={article} route="articles" className="article-votes" />
             <Button
