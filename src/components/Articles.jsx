@@ -69,6 +69,7 @@ class Articles extends Component {
       });
     }
     if (this.props.newArticle !== prevProps.newArticle) {
+      this.props.newArticle.comments = 0;
       this.setState({
         articles: [this.props.newArticle, ...this.state.articles]
       });
