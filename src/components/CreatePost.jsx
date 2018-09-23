@@ -13,8 +13,8 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     borderRadius: '5px',
-    height: '30%',
-    width: '30%',
+    height: '70%',
+    width: '70%',
     padding: '10px'
   }
 };

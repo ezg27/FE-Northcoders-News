@@ -47,7 +47,7 @@ class PostArticle extends Component {
           <button
             disabled={this.state.newTitle.length > 0 && this.state.newArticle.length > 0 && this.state.selectedTopic ? false : true}
             onClick={this.handleSubmit}
-            className="submit-button"
+            className="send-article"
           >
             Post article
           </button>
@@ -58,13 +58,15 @@ class PostArticle extends Component {
 
   componentDidMount() {
     api.fetchUser(this.props.currentUser).then(user => this.setState({ user }));
-    if (this.props.topic) this.setState({ selectedTopic: this.props.topic })
+    if (this.props.topic) this.setState({ selectedTopic: this.props.topic });
   }
 
   toggleButton = () => {
     const { newTitle, newArticle, selectedTopic } = this.state;
     const bool =
-      newTitle.length > 0 && newArticle.length > 0 && selectedTopic ? true : false;
+      newTitle.length > 0 && newArticle.length > 0 && selectedTopic
+        ? true
+        : false;
     this.setState({ isEnabled: bool });
   };
 
@@ -83,10 +85,12 @@ class PostArticle extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { selectedTopic, newTitle, newArticle, user } = this.state;
-    api.addArticle(user._id, selectedTopic, newTitle, newArticle).then(newArticle => {
-      this.props.handleNewArticle(newArticle);
-      this.props.closeModal();
-    });
+    api
+      .addArticle(user._id, selectedTopic, newTitle, newArticle)
+      .then(newArticle => {
+        this.props.handleNewArticle(newArticle);
+        this.props.closeModal();
+      });
   };
 }
 
