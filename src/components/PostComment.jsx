@@ -26,7 +26,7 @@ class PostComment extends Component {
             disabled={!isEnabled}
             className="submit-button"
           >
-            Post comment
+            POST COMMENT
           </button>
         </form>
       </div>
