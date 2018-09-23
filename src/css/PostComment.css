@@ -1,6 +1,6 @@
 .comment-form {
   display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 .modal-close {
@@ -8,17 +8,38 @@
 }
 
 .comment-input {
-  grid-column: 2;
+  grid-column: 1;
   grid-row: 2;
   width: 90%;
-  margin:  10px auto;
+  margin:  30px auto;
+  margin-right: none;
+  font-size: 14px;
+  padding: 5px;
   height: 150px;
   resize: none;
   border-radius: 5px;
-  border: solid rgba(40, 40, 40, 0.386) 1px;
+  border: none;
+  box-shadow: 0 0 4px rgb(167, 167, 167);
 }
 
 .submit-button {
-  grid-column: 2;
+  grid-column: 1;
   grid-row: 3;
+  margin: auto;
+  width: 140px;
+  height: 40px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px rgb(167, 167, 167);
+  background-color: rgb(216, 216, 216);
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(106, 106, 106);
+}
+
+.submit-button:hover {
+  cursor: pointer;
+}
+
+.submit-button:active {
+  background-color: rgb(189, 189, 189);
 }
