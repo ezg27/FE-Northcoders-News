@@ -26,14 +26,17 @@ class CommentList extends Component {
                     </h6>
                     <p className="comment-text">{comment.body}</p>
                     <Votes item={comment} route="comments" />
-                    {comment.created_by.username === this.state.currentUser && (
-                      <button
-                        onClick={() => this.handleDeleteComment(comment._id)}
-                        className="delete-button"
-                      >
-                        Delete
-                      </button>
-                    )}
+                    {comment.created_by.username ===
+                          this.state.currentUser && (
+                          <button
+                            onClick={() =>
+                              this.handleDeleteComment(comment._id)
+                            }
+                            className="delete-button"
+                          >
+                            Delete
+                          </button>
+                        )}
                     <p className="comment-timestamp">
                       {moment(comment.created_at).format('lll')}
                     </p>
@@ -46,10 +49,12 @@ class CommentList extends Component {
   }
   componentDidMount() {
     api.fetchCommentsByArticleId(this.props.id).then(response => {
-      const comments = this.orderByTimestamp(response);
-      this.setState({
-        comments
-      });
+      if (response.type !== 'error') {
+        const comments = this.orderByTimestamp(response);
+        this.setState({
+          comments
+        });
+      }
     });
   }
 
