@@ -45,9 +45,23 @@
 }
 
 .send-article {
-  width: 200px;
-  font-size: 13px;
-  height: 40px;
   grid-row: 5;
   margin: 20px auto;
+  width: 140px;
+  height: 40px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px rgb(167, 167, 167);
+  background-color: rgb(216, 216, 216);
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(106, 106, 106);
+}
+
+.send-article:hover {
+  cursor: pointer;
+  background-color: rgb(167, 167, 167);
+}
+
+.send-article:active {
+  background-color: rgb(189, 189, 189);
 }
